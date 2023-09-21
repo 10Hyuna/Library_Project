@@ -3,6 +3,7 @@ using Library.Model.DTO;
 using Library.Utility;
 using Library.View;
 using MySqlX.XDevAPI.Relational;
+using Org.BouncyCastle.Utilities.Collections;
 using System;
 using System.Collections.Generic;
 using System.Data.Common;
@@ -10,6 +11,7 @@ using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using static System.Reflection.Metadata.BlobBuilder;
 
 namespace Library.Controller.APIAccess
 {
@@ -27,13 +29,11 @@ namespace Library.Controller.APIAccess
             string bookInformation;
             int bookCount;
 
-            string isESC;
+            string isESC = null;
 
             bool isEnterESC = true;
 
             List<BookDTO> books = new List<BookDTO>();
-
-            Console.SetWindowSize(76, 40);
 
             PrintBookInformation.GetPrintBookInformation().PrintNaverSearch();
 
@@ -53,21 +53,42 @@ namespace Library.Controller.APIAccess
                     continue;
                 }
 
-                PrintBookInformation.GetPrintBookInformation().PrintNaverSearchResult();
-                books = SearchBook(bookInformation, bookCount);     // 네이버 API 연결을 통해 책을 검색하는 메소드 호출
-                LogAddition.SetLogAddition().SetLogValue(Constant.USER_NAME, bookInformation, Constant.NAVER_SEARCH);   // 책을 검색한 로그 찍기
-                PrintBookInformation.GetPrintBookInformation().PrintRequestBookList(books);
-                Console.SetCursorPosition(0, 0);
+                AnnounceResultOfSearching(books, bookInformation, bookCount);
 
-                if(entryType == (int)MODE.MANAGER)
-                {       // 매니저 모드에서 진입했다면
-                    PrintBookInformation.GetPrintBookInformation().PrintEraseRequest();        // 책 요청은 불가능하기 때문에 UI에서 책 요청 지우기
-                    isESC = InputFromUser.GetInputFromUser().InputEnterESC();
+                if(IsEnteredModeOfManager(entryType, isESC))
+                {
                     return;
                 }
                 isESC = InputFromUser.GetInputFromUser().InputEnterESC();
                 EnterRequestMenu(isESC, books, userId);
             }
+        }
+
+        private void AnnounceResultOfSearching(List<BookDTO> books, String bookInformation, int bookCount)
+        {
+            PrintBookInformation.GetPrintBookInformation().PrintNaverSearchResult();
+            books = SearchBook(bookInformation, bookCount);     // 네이버 API 연결을 통해 책을 검색하는 메소드 호출
+            LogAddition.SetLogAddition().SetLogValue(Constant.USER_NAME, bookInformation, Constant.NAVER_SEARCH);   // 책을 검색한 로그 찍기
+            PrintBookInformation.GetPrintBookInformation().PrintRequestBookList(books);
+            Console.SetCursorPosition(0, 0);
+        }
+
+        private bool IsEnteredModeOfManager(int entryType, string isESC)
+        {
+            bool isEnterESC = false;
+
+            while(isESC != Constant.ESC_STRING)
+            {
+                if (entryType == (int)MODE.MANAGER)
+                {       // 매니저 모드에서 진입했다면
+                    PrintBookInformation.GetPrintBookInformation().PrintEraseRequest();        // 책 요청은 불가능하기 때문에 UI에서 책 요청 지우기
+                    isESC = InputFromUser.GetInputFromUser().InputEnterESC();
+                    
+                    isEnterESC = true;
+                }
+            }
+
+            return isEnterESC;
         }
 
         private string EnterBookInformation()
@@ -139,7 +160,6 @@ namespace Library.Controller.APIAccess
 
         private List<BookDTO> SearchBook(string bookInformation, int bookCount)
         {
-            bool isESC = true;
             List<BookDTO> books = new List<BookDTO>();
 
             books = DataParse.GetDataParse().ReturnSearchResult(bookInformation, bookCount);

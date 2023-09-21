@@ -207,6 +207,8 @@ namespace Library.View
 
         public void PrintNaverSearch()
         {
+            Console.SetWindowSize(76, 40);
+
             Console.Clear();
             Console.WriteLine("\n 책 키워드 :");
             Console.WriteLine(" 책 개수   :\n");

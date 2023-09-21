@@ -53,6 +53,7 @@ namespace Library.Utility
 
         public string InputEnterESC()        // ESC나 ENTER 입력
         {
+            Console.CursorVisible = false;
             keyInfo = Console.ReadKey(true);
 
             string returnValue = "";

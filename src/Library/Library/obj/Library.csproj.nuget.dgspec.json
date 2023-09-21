@@ -1,25 +1,30 @@
 {
   "format": 1,
   "restore": {
-    "/Users/hyunakim/Desktop/develop/study/5차 라이브러리 + DB/src/Library/Library/Library.csproj": {}
+    "C:\\Users\\현아\\Desktop\\Library-refactoring\\Library_Project\\src\\Library\\Library\\Library.csproj": {}
   },
   "projects": {
-    "/Users/hyunakim/Desktop/develop/study/5차 라이브러리 + DB/src/Library/Library/Library.csproj": {
+    "C:\\Users\\현아\\Desktop\\Library-refactoring\\Library_Project\\src\\Library\\Library\\Library.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "/Users/hyunakim/Desktop/develop/study/5차 라이브러리 + DB/src/Library/Library/Library.csproj",
+        "projectUniqueName": "C:\\Users\\현아\\Desktop\\Library-refactoring\\Library_Project\\src\\Library\\Library\\Library.csproj",
         "projectName": "Library",
-        "projectPath": "/Users/hyunakim/Desktop/develop/study/5차 라이브러리 + DB/src/Library/Library/Library.csproj",
-        "packagesPath": "/Users/hyunakim/.nuget/packages/",
-        "outputPath": "/Users/hyunakim/Desktop/develop/study/5차 라이브러리 + DB/src/Library/Library/obj/",
+        "projectPath": "C:\\Users\\현아\\Desktop\\Library-refactoring\\Library_Project\\src\\Library\\Library\\Library.csproj",
+        "packagesPath": "C:\\Users\\현아\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\현아\\Desktop\\Library-refactoring\\Library_Project\\src\\Library\\Library\\obj\\",
         "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
+        ],
         "configFilePaths": [
-          "/Users/hyunakim/.nuget/NuGet/NuGet.Config"
+          "C:\\Users\\현아\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
           "net6.0"
         ],
         "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
@@ -58,26 +63,12 @@
           ],
           "assetTargetFallback": true,
           "warn": true,
-          "downloadDependencies": [
-            {
-              "name": "Microsoft.AspNetCore.App.Ref",
-              "version": "[6.0.15, 6.0.15]"
-            },
-            {
-              "name": "Microsoft.NETCore.App.Host.osx-arm64",
-              "version": "[6.0.15, 6.0.15]"
-            },
-            {
-              "name": "Microsoft.NETCore.App.Ref",
-              "version": "[6.0.15, 6.0.15]"
-            }
-          ],
           "frameworkReferences": {
             "Microsoft.NETCore.App": {
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "/Users/hyunakim/.dotnet/sdk/7.0.202/RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.100\\RuntimeIdentifierGraph.json"
         }
       }
     }
