@@ -86,6 +86,10 @@ namespace Library.Controller.APIAccess
                     
                     isEnterESC = true;
                 }
+                else
+                {
+                    break;
+                }
             }
 
             return isEnterESC;
