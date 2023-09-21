@@ -30,6 +30,8 @@ namespace Library.Controller.APIAccess
                 isESC = false;
                 Console.Clear();
                 PrintBookInformation.GetPrintBookInformation().PrintRequestBook();
+                Console.SetCursorPosition(0, 3);
+                PrintBookInformation.GetPrintBookInformation().PrintRequestBookList(books);
                 bookInformation = ExceptionHandler.GetExceptionHandler().IsValidInput(Constant.TITLE, column, row, 20, Constant.IS_NOT_PASSWORD);
                 // 요청하고자 하는 책의 정보를 입력받는 메소드 호출
 

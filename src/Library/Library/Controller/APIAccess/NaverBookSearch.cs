@@ -19,6 +19,8 @@ namespace Library.Controller.APIAccess
     {
 
         private RequestmentBook requestmentBook;
+        private List<BookDTO> books = new List<BookDTO>();
+
         public NaverBookSearch()
         {
             requestmentBook = new RequestmentBook();
@@ -32,8 +34,6 @@ namespace Library.Controller.APIAccess
             string isESC = null;
 
             bool isEnterESC = true;
-
-            List<BookDTO> books = new List<BookDTO>();
 
             PrintBookInformation.GetPrintBookInformation().PrintNaverSearch();
 
@@ -53,7 +53,7 @@ namespace Library.Controller.APIAccess
                     continue;
                 }
 
-                AnnounceResultOfSearching(books, bookInformation, bookCount);
+                books = AnnounceResultOfSearching(books, bookInformation, bookCount);
 
                 if(IsEnteredModeOfManager(entryType, isESC))
                 {
@@ -64,13 +64,15 @@ namespace Library.Controller.APIAccess
             }
         }
 
-        private void AnnounceResultOfSearching(List<BookDTO> books, String bookInformation, int bookCount)
+        private List<BookDTO> AnnounceResultOfSearching(List<BookDTO> books, String bookInformation, int bookCount)
         {
             PrintBookInformation.GetPrintBookInformation().PrintNaverSearchResult();
             books = SearchBook(bookInformation, bookCount);     // 네이버 API 연결을 통해 책을 검색하는 메소드 호출
             LogAddition.SetLogAddition().SetLogValue(Constant.USER_NAME, bookInformation, Constant.NAVER_SEARCH);   // 책을 검색한 로그 찍기
             PrintBookInformation.GetPrintBookInformation().PrintRequestBookList(books);
             Console.SetCursorPosition(0, 0);
+
+            return books;
         }
 
         private bool IsEnteredModeOfManager(int entryType, string isESC)
