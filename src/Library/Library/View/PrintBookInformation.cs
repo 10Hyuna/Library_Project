@@ -233,6 +233,7 @@ namespace Library.View
 
         public void PrintRequestBook()
         {
+            Console.SetWindowSize(76, 40);
             Console.SetCursorPosition(0, 1);
             Console.WriteLine("                                                                       \n");
             Console.SetCursorPosition(1, 1);

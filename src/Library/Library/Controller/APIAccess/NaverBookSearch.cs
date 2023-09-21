@@ -35,10 +35,9 @@ namespace Library.Controller.APIAccess
 
             bool isEnterESC = true;
 
-            PrintBookInformation.GetPrintBookInformation().PrintNaverSearch();
-
             while (isEnterESC)
             {
+                PrintBookInformation.GetPrintBookInformation().PrintNaverSearch();
                 bookInformation = EnterBookInformation();   // 찾고자 하는 책의 정보를 입력받는 메소드 호출
                 if (bookInformation == Constant.ESC_STRING)
                 {
